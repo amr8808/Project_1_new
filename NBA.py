@@ -20,7 +20,6 @@ class nba:
     
     def allstar_total_csv(self, total):
         allstartotal_df = pd.read_csv(total, infer_datetime_format=True,parse_dates=True, index_col='DateTime')
-#         allstartotal_df.index = allstartotal_df.index.date
         self.allstartot = allstartotal_df
         
     def allstar_summary_csv(self, summary):
@@ -29,8 +28,7 @@ class nba:
         self.all_summary = summary_df
     
     def hist_player_prices(self):
-        hpp_plot = self.df.hvplot.line(y='Purchase Price',groupby='Player Name')
-        return hpp_plot
+        return self.df.hvplot.line(y='Purchase Price',groupby='Player Name')
     
     def price_serial_corr(self):
         correlation_df = self.df.filter(['Player Name','Serial','Purchase Price'],axis=1)
@@ -46,16 +44,13 @@ class nba:
         return txn_plot
     
     def serial_price(self):
-        sp_plot = self.df.hvplot.scatter(x='Serial', y='Purchase Price', groupby = 'Player Name',width = 1200, height =500,xticks = 25)
-        return sp_plot
-    
+        return self.df.hvplot.scatter(x='Serial', y='Purchase Price', groupby = 'Player Name',width = 1200, height =500,xticks = 25)
+     
     def market_cap(self):
-        mc_plot = self.allstartot.hvplot.line(ylim=(0,18000), rot=90)
-        return mc_plot
+        return self.allstartot.hvplot.line(ylim=(0,18000), rot=90)
     
     def low_ask(self):
-        la_plot = self.all_summary.hvplot.bar(y='Low Ask', rot=90)
-        return la_plot
+        return self.all_summary.hvplot.bar(y='Low Ask', rot=90)
     
     def dash(self):
         dashboard_title = "NBA TopShot Evaluator"
