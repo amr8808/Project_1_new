@@ -6,6 +6,14 @@ from panel import widgets
 
 
 class nba:
+    """Analyze NBA TopShot output csv from otmnft.com
+
+    Keyword arguments:
+    collection -- set transaction details, 10s of thousands of rows
+    total -- set totals details
+    summary -- player level details
+    
+    """
     def __init__ (self, collection, total, summary):
         self.csv = collection #assign csv to the class
         self.clean_csv() #run data cleaning
